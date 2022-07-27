@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  db:
+    container_name: db_redwood
+    image: postgres:14.1-alpine
+    volumes:
+      - postgres:/var/lib/postgres/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+      LANG: 'en_US.UTF-8'
+      LANGUAGE: 'en_US:en'
+      LC_ALL: 'en_US.UTF-8'
+  adminer_redwood:
+    container_name: adminer_redwood
+    image: adminer
+    ports:
+      - 5555:8080
+    environment:
+      - ADMINER_DESIGN=mvt
+    logging:
+      driver: "none"
+volumes:
+  postgres:
